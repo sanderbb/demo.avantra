@@ -20,7 +20,9 @@
       source: "{{ disk }}"
     network_interfaces:
     - network: 
-        selfLink: "{{ gce_network_vpc }}"
+        selfLink: "{{ gce_network_prefix + '/global/networks/' + gce_network_vpc }}"
+      subnetwork:
+        selfLink: "{{ gce_network_prefix + '/regions/ + gce_nw_zone }}"
       access_configs:
       - name: External NAT
         type: ONE_TO_ONE_NAT  
