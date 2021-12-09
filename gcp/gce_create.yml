@@ -29,5 +29,9 @@
     auth_kind: serviceaccount
 #    service_account_file: "{{ credentials_file }}"
     state: present
-#  register: instance
+  register: gcp_instance
 
+
+- name: Info on instance
+  debug:
+     var: gcp_instance 
