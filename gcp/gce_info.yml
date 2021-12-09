@@ -5,6 +5,8 @@
   tasks:
   - name: get info on a network
     gcp_compute_network_info:
+      filters:
+      - name = "{{ gce_network_vpc }}"
       auth_kind: serviceaccount
     register: gce_info_config
 
