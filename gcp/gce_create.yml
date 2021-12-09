@@ -20,7 +20,7 @@
       source: "{{ disk }}"
     network_interfaces:
     - network: avantra-lab-vpc        
-    - access_configs:
+      access_configs:
       - name: External NAT
         type: ONE_TO_ONE_NAT  
     zone: "{{ gce_zone }}"
