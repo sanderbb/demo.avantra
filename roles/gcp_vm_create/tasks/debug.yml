@@ -4,5 +4,5 @@
 
 - name: Debug Role Variables
   debug:
-    msg: "Name: {{ gcp_vm_name }}\nSize: {{ gcp_vm_disksize }}\ntype: {{ gce_vm_type  }}\n"
+    msg: "Name: {{ gcp_vm_name }}\nSize: {{ gcp_vm_disksize }}\ntype: {{ gcp_vm_type  }}\n"
 

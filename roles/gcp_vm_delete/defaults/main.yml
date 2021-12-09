@@ -3,7 +3,7 @@
 # Credentials for GCP and Tower/Controller needs to be configured in Tower/Controller
 
 # Define the google vm  type
-gce_vm_type: n1-standard-2
+gcp_vm_type: n1-standard-2
 # define the google region
 gcp_vm_zone: us-central1-a
 # define the name of VM to be deleted
