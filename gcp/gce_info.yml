@@ -1,0 +1,16 @@
+---
+- hosts: all
+  gather_facts: no
+
+  tasks:
+  - name: get info on an instance
+    gcp_compute_instance_info: 
+      zone: "{{ gce_zone }}" 
+      auth_kind: serviceaccount
+    register: gce_info_config
+
+  - name: Print VM configuration
+    debug:
+      var: gce_info_config 
+       
+
