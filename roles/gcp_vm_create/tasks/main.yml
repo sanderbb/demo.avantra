@@ -1,0 +1,52 @@
+---
+# tasks file for gcp_vm_create_tower
+- name: ensure disk for vm is created
+  gcp_compute_disk:
+    name: "{{ gcp_vm_name }}-disk"
+    size_gb: "{{ gcp_vm_disksize }}"
+    source_image: "{{ gcp_vm_image_source }}"
+    zone: "{{ gcp_vm_zone }}"
+#    project: "{{ project_id }}"
+    auth_kind: serviceaccount
+#    service_account_file: "{{ credentials_file }}"
+    state: present
+  register: gcp_disk_config
+
+- name: Get network configuration of {{ gcp_vm_vpc }}
+  gcp_compute_network_info:
+    filters:
+    - name = "{{ gcp_vm_vpc }}"
+    auth_kind: serviceaccount
+  register: gcp_network_config
+  when:
+    - gcp_vm_vpc is defined
+    - gcp_vm_vpc|trim != ''
+
+
+- name: ensure instance is created
+  gcp_compute_instance:
+    name: "{{ gcp_vm_name }}"
+    machine_type: "{{ gcp_vm_type }}"
+    disks:
+    - auto_delete: 'true'
+      boot: 'true'
+      source: "{{ gcp_disk_config }}"
+    network_interfaces:
+    - network: "{{ gcp_network_config | default(omit) }}"
+      access_configs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT  
+    zone: "{{ gce_zone }}"
+    tags:
+      items: "{{ gce_network_tags }}"
+#    project: "{{ project_id }}"
+    auth_kind: serviceaccount
+#    service_account_file: "{{ credentials_file }}"
+    state: present
+  register: gcp_instance
+
+
+- name: Info on instance
+  debug:
+     var: gcp_instance 
+

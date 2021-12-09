@@ -1,0 +1,30 @@
+---
+- hosts: localhost
+  gather_facts: no
+  
+  vars: 
+     name_prefix: rha-
+     gcp_machines:
+             - name: rha-hana
+               disksize: 50
+               vmtype: n1-standard-2
+             - name: rha-nw
+               disksize: 50
+               vmtype: n1-standard-2
+
+  tasks:
+  
+  - name: Debug dictionary
+    debug:
+            msg: "Name: {{ item.name }}\nSize: {{item.disksize}}\ntype: {{ item.vmtype }}\n"
+    loop: "{{ gcp_machines }}"
+             
+
+  - name: Create GCE VMs
+    include_role: 
+      name: gcp_vm_create
+    vars:
+      gcp_vm_name: "{{ item.name }}"
+      gcp_vm_disksize: "{{ item.disksize }}"
+      gce_vm_type: "{{ item.vmtype }}"
+    loop: "{{ gcp_machines }}"

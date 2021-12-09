@@ -1,0 +1,32 @@
+---
+- hosts: localhost
+  gather_facts: no
+  
+  #
+  # This dictionary is an example and needs to be
+  # overwritten in tower/controller
+  #
+  vars: 
+     gcp_machines:
+             - name: rha-hana
+               disksize: 50
+               vmtype: n1-standard-2
+             - name: rha-nw
+               disksize: 50
+               vmtype: n1-standard-2
+
+  tasks:
+  
+  - name: Debug dictionary
+    debug:
+            msg: "Name: {{ item.name }}\nSize: {{item.disksize}}\ntype: {{ item.vmtype }}\n"
+    loop: "{{ gcp_machines }}"
+             
+
+  - name: delete GCE VMs
+    include_role: 
+      name: gcp_vm_delete
+    vars:
+      gcp_vm_name: "{{ item.name }}"
+      gce_vm_type: "{{ item.vmtype }}"
+    loop: "{{ gcp_machines }}"
