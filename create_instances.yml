@@ -26,5 +26,5 @@
     vars:
       gcp_vm_name: "{{ item.name }}"
       gcp_vm_disksize: "{{ item.disksize }}"
-      gce_vm_type: "{{ item.vmtype }}"
+      gcp_vm_type: "{{ item.vmtype }}"
     loop: "{{ gcp_machines }}"

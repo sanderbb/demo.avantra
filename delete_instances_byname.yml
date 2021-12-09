@@ -28,5 +28,5 @@
       name: gcp_vm_delete
     vars:
       gcp_vm_name: "{{ item.name }}"
-      gce_vm_type: "{{ item.vmtype }}"
+      gcp_vm_type: "{{ item.vmtype }}"
     loop: "{{ gcp_machines }}"
