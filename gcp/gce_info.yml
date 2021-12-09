@@ -18,6 +18,6 @@
 
   - name: Print VM configuration
     debug:
-      var: gce_info_config 
+      msg: " {{ gce_info_config.resources[1] }} "
        
 
