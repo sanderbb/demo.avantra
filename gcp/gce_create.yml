@@ -19,7 +19,7 @@
       boot: 'true'
       source: "{{ disk }}"
     network_interfaces:
-    - network: "avantra-lab-vpc"
+    - network: "{{ gce_network_vpc }}"
       access_configs:
       - name: External NAT
         type: ONE_TO_ONE_NAT  
