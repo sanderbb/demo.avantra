@@ -1,0 +1,18 @@
+---
+- hosts: all
+  gather_facts: no
+  
+  tasks:
+  - name: Debug all hostvariables
+    debug:
+      var: hostvars[inventory_hostname]
+
+             
+
+  # name: delete GCE VMs
+  #  include_role: 
+  #    name: gcp_vm_delete
+  #  vars:
+  #    gcp_vm_name: "{{ item.name }}"
+  #    gcp_vm_type: "{{ item.vmtype }}"
+  #  loop: "{{ gcp_machines }}"
