@@ -3,11 +3,16 @@
   gather_facts: no
 
   tasks:
-  - name: get info on an instance
-    gcp_compute_instance_info: 
-      zone: "{{ gce_zone }}" 
+  - name: get info on a network
+    gcp_compute_network_info:
       auth_kind: serviceaccount
     register: gce_info_config
+
+  # name: get info on an instance
+  # gcp_compute_instance_info: 
+  #   zone: "{{ gce_zone }}" 
+  #   auth_kind: serviceaccount
+  # register: gce_info_config
 
   - name: Print VM configuration
     debug:
