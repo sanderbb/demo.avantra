@@ -38,7 +38,7 @@
         type: ONE_TO_ONE_NAT  
     zone: "{{ gcp_vm_zone }}"
     tags:
-      items: "{{ gcp_network_tags }}"
+      items: "{{ gcp_vm_network_tags }}"
 #    project: "{{ project_id }}"
     auth_kind: serviceaccount
 #    service_account_file: "{{ credentials_file }}"
