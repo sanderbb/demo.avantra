@@ -10,6 +10,14 @@
     state: present
   register: disk
 
+- name: get info on a network
+  gcp_compute_network_info:
+    filters:
+    - name = "{{ gce_network_vpc }}"
+    auth_kind: serviceaccount
+  register: gce_network_config
+
+
 - name: create a instance
   gcp_compute_instance:
     name: "{{ item }}"
@@ -19,10 +27,7 @@
       boot: 'true'
       source: "{{ disk }}"
     network_interfaces:
-    - network: 
-        selfLink: "{{ gce_network_prefix }}/global/networks/{{ gce_network_vpc }}"
-      subnetwork:
-        selfLink: "{{ gce_network_prefix }}/regions/{{ gce_nw_zone }}"
+    - network: "{{ gce_network_config.resources }}"
       access_configs:
       - name: External NAT
         type: ONE_TO_ONE_NAT  
