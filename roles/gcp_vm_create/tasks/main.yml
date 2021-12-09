@@ -1,6 +1,6 @@
 ---
 # tasks file for gcp_vm_create_tower
-- name: ensure disk for vm is created
+- name: ensure disk for vm {{ gcp_vm_name }}  is created
   gcp_compute_disk:
     name: "{{ gcp_vm_name }}-disk"
     size_gb: "{{ gcp_vm_disksize }}"
@@ -23,7 +23,7 @@
     - gcp_vm_vpc|trim != ''
 
 
-- name: ensure instance is created
+- name: ensure vm {{ gcp_vm_name }} is created
   gcp_compute_instance:
     name: "{{ gcp_vm_name }}"
     machine_type: "{{ gcp_vm_type }}"

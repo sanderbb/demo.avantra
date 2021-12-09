@@ -9,17 +9,15 @@
   vars: 
      gcp_machines:
              - name: rha-hana
-               disksize: 50
                vmtype: n1-standard-2
              - name: rha-nw
-               disksize: 50
                vmtype: n1-standard-2
 
   tasks:
   
   - name: Debug dictionary
     debug:
-            msg: "Name: {{ item.name }}\nSize: {{item.disksize}}\ntype: {{ item.vmtype }}\n"
+            msg: "Name: {{ item.name }}\ntype: {{ item.vmtype }}\n"
     loop: "{{ gcp_machines }}"
              
 
