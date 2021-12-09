@@ -36,7 +36,7 @@
       access_configs:
       - name: External NAT
         type: ONE_TO_ONE_NAT  
-    zone: "{{ gcp_zone }}"
+    zone: "{{ gcp_vm_zone }}"
     tags:
       items: "{{ gcp_network_tags }}"
 #    project: "{{ project_id }}"
