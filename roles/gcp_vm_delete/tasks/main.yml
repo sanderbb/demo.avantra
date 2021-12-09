@@ -1,7 +1,7 @@
 ---
 # tasks file for gcp_vm_delete
 #
-- name: delete an instance
+- name: instance {{ gcp_vm_name }} deleted
   gcp_compute_instance:
     name: "{{ gcp_vm_name }}"
     machine_type: "{{ gcp_vm_type }}"

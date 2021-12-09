@@ -21,7 +21,7 @@
     loop: "{{ gcp_machines }}"
              
 
-  - name: delete GCE VMs
+  - name: delete GCP VMs
     include_role: 
       name: gcp_vm_delete
     vars:
