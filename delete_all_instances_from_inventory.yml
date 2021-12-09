@@ -14,5 +14,4 @@
     vars:
       gcp_vm_name: "{{ name }}"
       gcp_vm_type: "{{ machineType }}"
-    delegate_to: localhost  
     when: "'rha-' in name"
