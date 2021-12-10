@@ -51,7 +51,7 @@
   - name: Set Tower API-URL
     set_fact:
       tower_api_hana: '{{ lookup("env", "TOWER_HOST") }}api/v2/groups/582/hosts/'
-      tower_api_s4: '{{ lookup("env", "TOWER_HOST") }}api/v2/groups/582/hosts/'
+      tower_api_s4: '{{ lookup("env", "TOWER_HOST") }}api/v2/groups/583/hosts/'
       tower_api_management: '{{ lookup("env", "TOWER_HOST") }}api/v2/groups/584/hosts/'
  
   - name: Update group with new host
@@ -64,7 +64,7 @@
       force_basic_auth: yes
       status_code: 201
       body_format: json
-      validate_certs: no 
+      validate_certs: yes 
     when: item.name == name 
     loop: "{{ gcp_machines }}"
     delegate_to: localhost
