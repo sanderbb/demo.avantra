@@ -22,7 +22,7 @@
   
   - name: Info on host
     debug:
-            msg: "Name of {{ inventory_hostname }} is {{ name }} in  {{ awx_directory }} \n"
+            msg: "Name of {{ inventory_hostname }} is {{ name }} in  {{ awx_inventory }} \n"
     delegate_to: localhost
     loop: "{{ gcp_machines }}"
              
