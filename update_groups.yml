@@ -22,7 +22,9 @@
   
   - name: Info on host
     debug:
-            msg: "Name of {{ inventory_hostname }} is {{ name }} in  {{ awx_inventory }} \n"
+      msg: 
+        - "Name of {{ inventory_hostname }} is {{ name }} in  {{ awx_inventory }}"
+        - "Dict Name: {{ item.name }}"
     delegate_to: localhost
     loop: "{{ gcp_machines }}"
              
@@ -35,8 +37,8 @@
       state: present
       #preserve_existing_hosts: True
       #preserve_existing_children: True
-    when: gcp_machines.name == name 
-    delegate_to: localhost
+    when: item.name == name 
     loop: "{{ gcp_machines }}"
+    delegate_to: localhost
     tags:
        - update_group
