@@ -45,7 +45,7 @@
   #     - update_group
   #
   - name: Update group with new host
-    command: tower-cli --help
+    command: /usr/bin/tower-cli --help
     delegate_to: localhost
     
 
