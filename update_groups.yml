@@ -23,6 +23,7 @@
   - name: Enter playbook for {{ inventory_hostname }}
     debug:
             msg: "Name of {{ inventory_hostname }} is {{ name }} \n"
+    delegate_to: localhost
     loop: "{{ gcp_machines }}"
              
   - name: Update group with new host
@@ -35,6 +36,7 @@
       #preserve_existing_hosts: True
       #preserve_existing_children: True
     when: gcp_machines.name == name 
+    delegate_to: localhost
     loop: "{{ gcp_machines }}"
     tags:
        - update_group
