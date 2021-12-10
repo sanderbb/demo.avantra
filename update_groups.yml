@@ -45,5 +45,5 @@
   #     - update_group
   #
   - name: Update group with new host
-    cmd: "tower-cli --help"
+    command: tower-cli --help
 
