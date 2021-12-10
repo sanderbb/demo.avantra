@@ -43,10 +43,4 @@
     auth_kind: serviceaccount
 #    service_account_file: "{{ credentials_file }}"
     state: present
-  register: gcp_instance
-
-
-- name: Info on instance
-  debug:
-     var: gcp_instance 
-
+  register: gcp_new_instance

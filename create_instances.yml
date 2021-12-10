@@ -8,9 +8,11 @@
              - name: rha-hana
                disksize: 50
                vmtype: n1-standard-2
+               group: hana
              - name: rha-nw
                disksize: 50
                vmtype: n1-standard-2
+               group: s4
 
   tasks:
   
@@ -19,12 +21,17 @@
             msg: "Name: {{ item.name }}\nSize: {{item.disksize}}\ntype: {{ item.vmtype }}\n"
     loop: "{{ gcp_machines }}"
              
+  - name VM Creation and Group entry
+    block:
+    - name: Create GCE VMs
+      include_role: 
+        name: gcp_vm_create
+      vars:
+        gcp_vm_name: "{{ item.name }}"
+        gcp_vm_disksize: "{{ item.disksize }}"
+        gcp_vm_type: "{{ item.vmtype }}"
+    - name: Info on instance
+      debug:
+        var: gcp_new_instance
 
-  - name: Create GCE VMs
-    include_role: 
-      name: gcp_vm_create
-    vars:
-      gcp_vm_name: "{{ item.name }}"
-      gcp_vm_disksize: "{{ item.disksize }}"
-      gcp_vm_type: "{{ item.vmtype }}"
     loop: "{{ gcp_machines }}"

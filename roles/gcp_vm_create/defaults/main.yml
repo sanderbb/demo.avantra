@@ -18,3 +18,4 @@ gcp_vm_disksize: 50
 gcp_vm_vpc: 
 # Define network tags (firewall rule) to use
 gcp_vm_network_tags: 
+
