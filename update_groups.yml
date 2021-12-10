@@ -1,8 +1,6 @@
 ---
 - hosts: all
   gather_facts: no
-  collections:
-   - ansible.tower
   
   ### 
   # 
@@ -31,18 +29,45 @@
     loop: "{{ gcp_machines }}"
              
   ### the following needs a newer version of ansible
+  # - name: Update group with new host
+  #  tower_group:
+  #    name: "{{ item.group }}"
+  #    inventory: "{{ awx_inventory | default('Default') }}"
+  #    hosts:
+  #      - "{{ inventory_hostname }}"
+  #    state: present
+  #    #preserve_existing_hosts: True
+  #    #preserve_existing_children: True
+  #  when: item.name == name 
+  #  loop: "{{ gcp_machines }}"
+  #  delegate_to: localhost
+  #  tags:
+  #     - update_group
+  #
+
+
+  ## to simplify its hardcoded
+  # mapping available at api/v2/groups/
+  - name: Set Tower API-URL
+    set_fact:
+      tower_api_hana: '{{ lookup("env", "TOWER_HOST") }}api/v2/groups/582/hosts/'
+      tower_api_s4: '{{ lookup("env", "TOWER_HOST") }}api/v2/groups/582/hosts/'
+      tower_api_management: '{{ lookup("env", "TOWER_HOST") }}api/v2/groups/584/hosts/'
+ 
   - name: Update group with new host
-    tower_group:
-      name: "{{ item.group }}"
-      inventory: "{{ awx_inventory | default('Default') }}"
-      hosts:
-        - "{{ inventory_hostname }}"
-      state: present
-      #preserve_existing_hosts: True
-      #preserve_existing_children: True
+    uri:
+      url:  "{{ lookup('vars','tower_api_' + item.group) }}"
+      user: '{{ lookup("env", "TOWER_USERNAME") }}'
+      password: '{{ lookup("env", "TOWER_PASSWORD") }}'
+      method: POST
+      body: '{ "name" : "{{ inventory_hostname }}" }'
+      force_basic_auth: yes
+      status_code: 201
+      body_format: json
+      validate_certs: no 
     when: item.name == name 
     loop: "{{ gcp_machines }}"
     delegate_to: localhost
     tags:
        - update_group
-  
+
