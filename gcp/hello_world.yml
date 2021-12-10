@@ -5,5 +5,5 @@
   tasks:
   - name: Print hello world
     debug:
-            msg: "Hello Worldi from {{ name }}"
+            msg: "Hello World from {{ name }}"
             

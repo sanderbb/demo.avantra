@@ -1,0 +1,40 @@
+---
+- hosts: all
+  gather_facts: no
+  
+  ### 
+  # 
+  # This playbook runs through an autodetected inventory
+  # and adds all hosts to a group in that inventory based on 
+  # the followign variable structure
+  #
+  #   gcp_machines:
+  #          - name: rha-hana
+  #            group: hana
+  #          - name: rha-nw
+  #            group: s4
+  #
+  #  Add the main inventory to the following variable
+  #
+  #  awx_inventory 
+
+  tasks:
+  
+  - name: Enter playbook for {{ inventory_hostname }}
+    debug:
+            msg: "Name of {{ inventory_hostname }} is {{ name }} \n"
+    loop: "{{ gcp_machines }}"
+             
+  - name: Update group with new host
+    tower_group:
+      name: "{{ item.group }}"
+      inventory: "{{ awx_inventory | default('Default') }}"
+      hosts:
+        - "{{ inventory_hostname }}"
+      state: present
+      #preserve_existing_hosts: True
+      #preserve_existing_children: True
+    when: gcp_machines.name == name 
+    loop: "{{ gcp_machines }}"
+    tags:
+       - update_group
