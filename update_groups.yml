@@ -32,7 +32,7 @@
              
   ### the following needs a newer version of ansible
   - name: Update group with new host
-    ansible.tower.tower_group:
+    tower_group:
       name: "{{ item.group }}"
       inventory: "{{ awx_inventory | default('Default') }}"
       hosts:
