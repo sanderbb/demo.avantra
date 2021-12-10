@@ -62,7 +62,7 @@
       method: POST
       body: '{ "name" : "{{ inventory_hostname }}" }'
       force_basic_auth: yes
-      status_code: 201
+      status_code: 204
       body_format: json
       validate_certs: yes 
     when: item.name == name 
