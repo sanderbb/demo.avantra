@@ -21,7 +21,7 @@
             msg: "Name: {{ item.name }}\nSize: {{item.disksize}}\ntype: {{ item.vmtype }}\n"
     loop: "{{ gcp_machines }}"
              
-  - name VM Creation and Group entry
+  - name: VM Creation and Group entry
     block:
     - name: Create GCE VMs
       include_role: 
