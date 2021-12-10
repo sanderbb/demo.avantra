@@ -28,17 +28,22 @@
     delegate_to: localhost
     loop: "{{ gcp_machines }}"
              
+  ### the following needs a newer version of ansible
+  # - name: Update group with new host
+  #  tower_group:
+  #    name: "{{ item.group }}"
+  #    inventory: "{{ awx_inventory | default('Default') }}"
+  #    hosts:
+  #      - "{{ inventory_hostname }}"
+  #    state: present
+  #    #preserve_existing_hosts: True
+  #    #preserve_existing_children: True
+  #  when: item.name == name 
+  #  loop: "{{ gcp_machines }}"
+  #  delegate_to: localhost
+  #  tags:
+  #     - update_group
+  #
   - name: Update group with new host
-    tower_group:
-      name: "{{ item.group }}"
-      inventory: "{{ awx_inventory | default('Default') }}"
-      hosts:
-        - "{{ inventory_hostname }}"
-      state: present
-      #preserve_existing_hosts: True
-      #preserve_existing_children: True
-    when: item.name == name 
-    loop: "{{ gcp_machines }}"
-    delegate_to: localhost
-    tags:
-       - update_group
+    cmd: "tower-cli --help"
+
