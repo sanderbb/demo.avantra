@@ -1,6 +1,6 @@
 - src: mk-ansible-roles.check_reboot
 - src: mk-ansible-roles.setup_nfs_server
-- src: linuxr-system-roles.storage
+- src: linux-system-roles.storage
   version: 1.6.4
 - src: linux-system-roles.timesync
   version: 1.6.3
