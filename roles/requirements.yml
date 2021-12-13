@@ -1,6 +1,6 @@
 - src: mk-ansible-roles.check_reboot
 - src: mk-ansible-roles.setup_nfs_server
-- src: linux_system_roles.storage
+  #- src: linux_system_roles.storage
 - src: linux-system-roles.timesync
 - src: redhat_sap.sap_rhsm 
   version: v1.1.2
