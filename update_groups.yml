@@ -45,9 +45,12 @@
   #     - update_group
   #
 
-
-  ## to simplify its hardcoded
-  # mapping available at api/v2/groups/
+  # TODO: This needs to be refined or updated for AAP2
+  # hack from: https://www.unixarena.com/2020/06/how-to-update-the-ansible-tower-inventory-using-api.html/
+  # to simplify current groups are  hardcoded
+  # status_code: 204 add existinghost, 201 add new host
+  # mapping is available at api/v2/groups/ and should be calculated
+  #
   - name: Set Tower API-URL
     set_fact:
       tower_api_hana: '{{ lookup("env", "TOWER_HOST") }}api/v2/groups/582/hosts/'
