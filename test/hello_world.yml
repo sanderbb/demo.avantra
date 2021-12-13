@@ -7,3 +7,5 @@
     debug:
             msg: "Hello World from {{ name }}"
             
+  - name: test
+    command: cat /etc/centos-release
