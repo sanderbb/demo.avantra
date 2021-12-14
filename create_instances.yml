@@ -20,6 +20,7 @@
         - "Name: {{ item.name }}"
         - "Size: {{item.disksize}}"
         - "type: {{ item.vmtype }}"
+        - "group:{{ item.group }}"
     loop: "{{ gcp_machines }}"
              
   - name: Create GCE VMs
@@ -29,4 +30,5 @@
       gcp_vm_name: "{{ item.name }}"
       gcp_vm_disksize: "{{ item.disksize }}"
       gcp_vm_type: "{{ item.vmtype }}"
+      gcp_vm_awx_group: "{{ item.group }}"
     loop: "{{ gcp_machines }}"
