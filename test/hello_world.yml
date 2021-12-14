@@ -11,4 +11,4 @@
     ping:
 
   - name: test
-    command: cat /etc/centos-release
+    command: cat /etc/os-release
