@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: localhost
   gather_facts: no
   
   tasks:
@@ -7,11 +7,6 @@
   # debug:
   #   var: hostvars[inventory_hostname]
 
-
-  - name: delete GCP vm 
-    include_role: 
-      name: gcp_vm_delete
-    vars:
-      gcp_vm_name: "{{ name }}"
-      gcp_vm_type: "{{ machineType }}"
-    when: "'rha-' in name"
+  # find all names that start with "searchfilter" 
+  #
+  # Delete ALL matching VMs

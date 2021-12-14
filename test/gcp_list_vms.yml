@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+
+  - name: get info on an instance
+    gcp_compute_instance_info:
+      zone: us-central1-a
+      filters:
+      - zone = "{{ gcp_vm_zone }}"
+      auth_kind: serviceaccount
+
