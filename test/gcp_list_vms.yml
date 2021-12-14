@@ -14,7 +14,7 @@
 
   - name: Print List of names
     debug:
-      msg: "name: {{ item.name }}"
-    loop: gcp_instances.resource
+      msg: "name: {{ item }}"
+    loop: gcp_instances.resources | map(attribute="name")
 
 
