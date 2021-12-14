@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- name: Update Inventory Groups and test connection
+  hosts: all
   gather_facts: no
   
   ### 
@@ -74,3 +75,13 @@
     tags:
        - update_group
 
+  - name: Wait for SSH to come up
+    wait_for:
+      host: "{{ inventory_hostname }}"
+      port: 22
+      delay: 10
+      timeout: 120
+    delegate_to: localhost
+
+  - name: Check that connection with credentials works
+    ping:
