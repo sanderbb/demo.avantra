@@ -14,7 +14,6 @@
 
   - name: Print List of names
     debug:
-      msg: "name: {{ item-name }}"
-    loop: gcp_instances.resources
+            var: gcp_instances.resources
 
 
