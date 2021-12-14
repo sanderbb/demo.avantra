@@ -5,7 +5,7 @@
   tasks:
   - name: get info on an image
     gcp_compute_image_info:
-      filters:
-      - name = rhel-byos-cloud
+            #filters:
+            #- name = rhel-byos-cloud
       auth_kind: serviceaccount
     register: image_info
