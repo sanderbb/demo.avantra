@@ -7,7 +7,7 @@
     gcp_compute_disk_info:
       zone: "{{ gcp_vm_zone }}"
       filters:
-      - name =  rha-test01
+              - name = "{{ gcp_vm_name }}"
       auth_kind: serviceaccount
     register: gce_info_config
 
