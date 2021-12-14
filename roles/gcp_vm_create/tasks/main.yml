@@ -25,8 +25,8 @@
 - name: gcp_compute_subnetwork_info
   gcp_compute_subnetwork_info:
     region: "{{ gcp_vm_region }}"
-    #filters:
-    #- name = europe
+    filters:
+    - name = "{{ gcp_vm_region }}"
     auth_kind: serviceaccount
   register: gcp_subnetwork_config
 
@@ -39,8 +39,8 @@
       boot: 'true'
       source: "{{ gcp_disk_config }}"
     network_interfaces:
-    - network: "{{ gcp_network_config | default(omit) }}"
-      subnetwork: "{{ gcp_subnetwork_config | default(omit) }}"
+    - network: "{{ gcp_network_config.resources | first  }}"
+      subnetwork: "{{ gcp_subnetwork_config.resources | first }}"
       access_configs:
       - name: External NAT
         type: ONE_TO_ONE_NAT  
