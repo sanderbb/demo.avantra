@@ -7,14 +7,11 @@
   - name: get info on an instance
     gcp_compute_instance_info:
       zone: "{{ gcp_vm_zone }}"
-      #filters:
-      #- zone = "{{ gcp_vm_zone }}"
+      filters:
+      - name = "rha.*"
       auth_kind: serviceaccount
     register: gcp_instances
 
-  - set_fact:
-          mylist: gcp_instances.resources[].name | list
-
   - debug: 
-         var: mylist
+         var: gcp_instances.resources
 
