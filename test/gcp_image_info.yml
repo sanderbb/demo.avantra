@@ -10,5 +10,7 @@
       auth_kind: serviceaccount
     register: image_info
 
-  - debug:
-          var: image_info
+  - name: Print List of names
+    debug:
+      msg: "name: {{ item.name }}"
+    loop: image_info.resource
