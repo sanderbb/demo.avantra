@@ -10,4 +10,11 @@
       #filters:
       #- zone = "{{ gcp_vm_zone }}"
       auth_kind: serviceaccount
+    register: gcp_instances
+
+  - name: Print List of names
+    debug:
+      msg: "name: {{ item.name }}"
+    loop: gcp_instances.resource
+
 

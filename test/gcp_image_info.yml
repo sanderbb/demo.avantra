@@ -5,12 +5,11 @@
   tasks:
   - name: get info on an image
     gcp_compute_image_info:
-            #filters:
-            #- name = rhel-byos-cloud
+      filters:
+      - name = "{{ gcp_vm_disk }}"
       auth_kind: serviceaccount
     register: image_info
 
-  - name: Print List of names
+  - name: Print images 
     debug:
-      msg: "name: {{ item.name }}"
-    loop: image_info.resource
+            var: image_info 
