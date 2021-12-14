@@ -13,6 +13,6 @@
     register: gcp_instances
 
   - set_fact:
-          mylist: gcp_instances.resources|map(attribute='name')
+          mylist: gcp_instances.resources[].name | list
 
 
