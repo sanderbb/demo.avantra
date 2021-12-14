@@ -9,3 +9,6 @@
             #- name = rhel-byos-cloud
       auth_kind: serviceaccount
     register: image_info
+
+  - debug:
+          var: image_info

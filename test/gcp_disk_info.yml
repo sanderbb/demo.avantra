@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+  - name: get info on a disk
+    gcp_compute_disk_info:
+      zone: "{{ gcp_vm_zone }}"
+      filters:
+      - name =  rha-test01
+      auth_kind: serviceaccount
+    register: gce_info_config
+
+  # name: get info on an instance
+  # gcp_compute_instance_info: 
+  #   zone: "{{ gce_zone }}" 
+  #   auth_kind: serviceaccount
+  # register: gce_info_config
+
+  - name: Print VM configuration
+    debug:
+      msg: " {{ gce_info_config }} "
+       
+
