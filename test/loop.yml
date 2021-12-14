@@ -1,8 +1,0 @@
----
-- hosts: localhost
-  gather_facts: no
-
-  tasks:
-  - name: Create GCE VMs
-    include_tasks: gce_create.yml
-    loop: "{{ gce_machines }}"
