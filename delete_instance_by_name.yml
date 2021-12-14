@@ -1,0 +1,22 @@
+---
+- hosts: all
+  gather_facts: no
+  
+  #
+  # This dictionary is an example and needs to be
+  # overwritten in tower/controller
+  #
+  vars: 
+     gcp_machines:
+             - name: rha-hana
+             - name: rha-nw
+  tasks:
+  
+- name: instance {{ name }} deleted
+  gcp_compute_instance:
+    name: "{{ name }}"
+    machine_type: "{{ machineType }}"
+    zone: "{{ zone }}"
+    auth_kind: serviceaccount
+    state: absent
+  when: name in gcp_machines|map(attribute="name")
