@@ -12,8 +12,7 @@
       auth_kind: serviceaccount
     register: gcp_instances
 
-  - name: Print List of names
-    debug:
-            msg: "{{ gcp_instances.resources|map(attribute='name') }}"
+  - set_fact:
+          mylist: gcp_instances.resources|map(attribute='name')
 
 
