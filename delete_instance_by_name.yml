@@ -6,10 +6,10 @@
   # This dictionary is an example and needs to be
   # overwritten in tower/controller
   #
-  vars: 
-     gcp_machines:
-             - name: rha-hana
-             - name: rha-nw
+  #vars: 
+  #   gcp_machines:
+  #           - name: rha-hana
+              - name: rha-nw
   tasks:
   - name: instance deleted
     gcp_compute_instance:
