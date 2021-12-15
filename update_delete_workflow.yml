@@ -23,4 +23,4 @@
       survey_enabled: yes
       survey: "{{ lookup('template', 'templates/dynamic-workflow.json.j2') }}"
       #schema: "{{ lookup('template', 'templates/delete_workflow_schema.yml') }}"
-      schema: "[ { "job_template": "sub: Delete GCP Instances", "success": [ { "inventory_source": "GCP dynamic inventories" } ] } ]
+      schema: '[ { "job_template": "sub: Delete GCP Instances", "success": [ { "inventory_source": "GCP dynamic inventories" } ] } ]'

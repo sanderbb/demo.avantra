@@ -6,7 +6,7 @@
       "type": "multiplechoice",
       "question_name": "Delete which snapshots?",
       "question_description": "Select all hosts that apply",
-      "variable": "snapshot_desc",
+      "variable": "hostlist_del",
       "choices": [
 {% for host in groups['all'] %}
 {% if loop.last %}
