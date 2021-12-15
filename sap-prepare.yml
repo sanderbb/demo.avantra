@@ -7,7 +7,7 @@
   become: true
   roles:
                - redhat_sap.sap_rhsm
-               - linux-system-roles.timesync
+               # linux-system-roles.timesync google timeserver is already configured
                - linux-system-roles.storage
-               - sap-linux.sap-preconfigure
+               - sap.linux.sap-preconfigure
                # redhat_sap.sap_hostagent
