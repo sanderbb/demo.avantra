@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  gather_facts: no
+  gather_facts: false
 
   tasks:
   - name: get info on an image
@@ -10,6 +10,6 @@
       auth_kind: serviceaccount
     register: gcp_instance_info
 
-  - name: Print images 
+  - name: Print images
     debug:
-            var: gcp_instance_info 
+            var: gcp_instance_info

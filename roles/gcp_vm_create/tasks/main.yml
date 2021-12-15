@@ -43,7 +43,7 @@
       subnetwork: "{{ gcp_subnetwork_config.resources | first }}"
       access_configs:
       - name: External NAT
-        type: ONE_TO_ONE_NAT  
+        type: ONE_TO_ONE_NAT
     zone: "{{ gcp_vm_zone }}"
     tags:
       items: "{{ gcp_vm_network_tags }}"

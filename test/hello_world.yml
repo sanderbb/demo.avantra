@@ -1,12 +1,12 @@
 ---
 - hosts: all
-  gather_facts: no
+  gather_facts: false
 
   tasks:
   - name: Print hello world
     debug:
             msg: "Hello World from {{ name }}"
-            
+
   - name: Check connection
     ping:
 

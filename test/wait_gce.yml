@@ -1,8 +1,8 @@
 ---
 - hosts: all
-  gather_facts: no
+  gather_facts: false
 
-  tasks:    
+  tasks:
   - name: Wait for SSH to come up
     wait_for:
       host: "{{ ansible_ssh_host }}"

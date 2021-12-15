@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  gather_facts: no
+  gather_facts: false
 
   tasks:
 
@@ -12,6 +12,5 @@
       auth_kind: serviceaccount
     register: gcp_instances
 
-  - debug: 
+  - debug:
          var: gcp_instances.resources
-

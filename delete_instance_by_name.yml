@@ -1,12 +1,12 @@
 ---
 - hosts: all
-  gather_facts: no
-  
+  gather_facts: false
+
   #
   # This dictionary is an example and needs to be
   # overwritten in tower/controller
   #
-  #vars: 
+  # vars:
   #   gcp_machines:
   #           - name: rha-hana
   #           - name: rha-nw

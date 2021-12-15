@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  gather_facts: no
+  gather_facts: false
 
   ## You need to define servers in the following way
   #   gcp_machines:

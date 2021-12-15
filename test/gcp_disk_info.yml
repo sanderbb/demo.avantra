@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  gather_facts: no
+  gather_facts: false
 
   tasks:
   - name: get info on a disk
@@ -12,13 +12,11 @@
     register: gce_info_config
 
   # name: get info on an instance
-  # gcp_compute_instance_info: 
-  #   zone: "{{ gce_zone }}" 
+  # gcp_compute_instance_info:
+  #   zone: "{{ gce_zone }}"
   #   auth_kind: serviceaccount
   # register: gce_info_config
 
   - name: Print VM configuration
     debug:
       msg: " {{ gce_info_config }} "
-       
-
