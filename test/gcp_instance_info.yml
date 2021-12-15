@@ -6,10 +6,10 @@
   - name: get info on an image
     gcp_compute_image_info:
       filters:
-      - name = "{{ gcp_vm_disk }}"
+      - name = "{{ gcp_instance_name }}"
       auth_kind: serviceaccount
-    register: image_info
+    register: gcp_instance_info
 
   - name: Print images 
     debug:
-            var: image_info 
+            var: gcp_instance_info 
