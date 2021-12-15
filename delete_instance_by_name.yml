@@ -9,7 +9,8 @@
   #vars: 
   #   gcp_machines:
   #           - name: rha-hana
-              - name: rha-nw
+  #           - name: rha-nw
+  #
   tasks:
   - name: instance deleted
     gcp_compute_instance:

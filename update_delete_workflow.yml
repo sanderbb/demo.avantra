@@ -2,16 +2,7 @@
 - hosts: all
   gather_facts: no
   
-  #
-  # This dictionary is an example and needs to be
-  # overwritten in tower/controller
-  #
-  #vars: 
-  #   gcp_machines:
-  #           - name: rha-hana
-              - name: rha-nw
   tasks:
-
   - name: list of inventory names
     debug:
        msg: "{{ item }}"
