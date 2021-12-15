@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   gather_facts: no
-  
+
   ## You need to define servers in the following way
   #   gcp_machines:
   #           - name: rha-hana
@@ -16,15 +16,15 @@
   tasks:
   - name: Debug dictionary
     debug:
-      msg: 
+      msg:
         - "Name: {{ item.name }}"
-        - "Size: {{item.disksize}}"
+        - "Size: {{ item.disksize }}"
         - "type: {{ item.vmtype }}"
         - "group:{{ item.group }}"
     loop: "{{ gcp_machines }}"
-             
+
   - name: Create GCE VMs
-    include_role: 
+    include_role:
       name: gcp_vm_create
     vars:
       gcp_vm_name: "{{ item.name }}"
