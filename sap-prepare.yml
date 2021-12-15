@@ -4,12 +4,10 @@
 
 - name: Prepare for SAP Install
   hosts: gcp_awx_group_hana, gcp_awx_group_s4
-  collections:
-          - sap.linux
   become: true
   roles:
                - redhat_sap.sap_rhsm
                # linux-system-roles.timesync google timeserver is already configured
                - linux-system-roles.storage
-               - sap-preconfigure
+               - sap.linux.preconfigure
                # redhat_sap.sap_hostagent

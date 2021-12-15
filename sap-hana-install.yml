@@ -5,5 +5,5 @@
   become: true
 
   roles:
-    - sap-hana-preconfigure
+          - sap.linux.hana_preconfigure
     # redhat_sap.sap_hana_deployment
