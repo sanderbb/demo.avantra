@@ -8,6 +8,12 @@
     debug:
       var: groups['all']
 
+  - name: install ansible-tower-cli
+    dnf:
+      name: ansible-tower-cli
+      state: latest
+    become: yes  
+
   - name: Ensure Workflow template exists
     tower_workflow_template:
       name: Delete selected Instances
@@ -16,4 +22,5 @@
       state: present
       survey_enabled: yes
       survey: "{{ lookup('template', 'templates/dynamic-workflow.json.j2') }}"
-      schema: "{{ lookup('template', 'templates/delete_workflow_schema.yml') }}"
+      #schema: "{{ lookup('template', 'templates/delete_workflow_schema.yml') }}"
+      schema: "[ { "job_template": "sub: Delete GCP Instances", "success": [ { "inventory_source": "GCP dynamic inventories" } ] } ]
