@@ -7,7 +7,8 @@
     gcp_compute_image_info:
       # filters:
       # - name = "{{ gcp_instance_name }}"
-      auth_kind: serviceaccount
+            project: rhel-byos-cloud
+            auth_kind: serviceaccount
     register: gcp_instance_info
 
   - name: Print images
