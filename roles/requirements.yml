@@ -1,4 +1,5 @@
 - src: mk-ansible-roles.check_reboot
+- src: mk-ansible-roles.subscribe_rhn
 - src: mk-ansible-roles.setup_nfs_server
 - src: linux-system-roles.storage
   version: 1.6.4
@@ -14,3 +15,5 @@
   version: v1.1.0
 - src: redhat_sap.sap_hana_hsr
   version: v1.2.0
+- name: sap.download
+  src: https://github.com/kksat/sap.download.git
