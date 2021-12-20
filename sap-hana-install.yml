@@ -5,7 +5,7 @@
   become: true
   vars:
     sapdir: /sap-software
-    nfssrv: rha-avantra-server
+    nfssrv: 'rha-avantra-server'
 
   pre_tasks:
     - name: ensure sap-software directory exists
@@ -14,9 +14,9 @@
         state: directory
         mode: '0755'
 
-    - name: Setup nfs mount point for ext1
+    - name: Setup nfs mount point for SAP software
       mount:
-          src: "{{ rha-avantra-server }}:/export{{ sapdir }}"
+          src: "{{ nfssrv }}:/export{{ sapdir }}"
           path: "{{ sapdir }}"
           fstype: nfs
           state: mounted
