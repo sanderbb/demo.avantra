@@ -3,8 +3,7 @@
 - name: Install Hana
   hosts: gcp_awx_group_hana
   become: true
-
-  var:
+  vars:
     sapdir: /sap-software
     nfssrv: rha-avantra-server
 
