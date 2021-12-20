@@ -1,5 +1,5 @@
 ---
-- hosts: rha-nfs-server
+- hosts: gcp_awx_group_management
   become: true
 
   vars:
