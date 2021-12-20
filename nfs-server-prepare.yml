@@ -26,6 +26,7 @@
       delay: 10
       timeout: 120
     delegate_to: localhost
+    become: false
 
   roles:
                - mk-ansible-roles.subscribe_rhn

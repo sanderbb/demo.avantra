@@ -13,6 +13,7 @@
       delay: 10
       timeout: 120
     delegate_to: localhost
+    become: false
   roles:
                - redhat_sap.sap_rhsm
                # linux-system-roles.timesync google timeserver is already configured
