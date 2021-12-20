@@ -1,0 +1,20 @@
+---
+- hosts: rha-nfs-server
+  become: true
+
+  vars:
+   sap_software:
+          - hana
+          - sapcar
+
+  tasks:
+  - name: Create GCE VMs
+    include_role:
+      name: sap.download
+    vars:
+          sap_sapsupport_download_application: "{{ sap_download_item }}"
+          sap_sapsupport_download_version: "latest"
+          sap_sapsupport_download_destination: "/export/sap-software/"
+    loop: "{{ sap_software  }}"
+    loop_control:
+           loop_var: sap_download_item
