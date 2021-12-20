@@ -2,10 +2,11 @@
 # This playbook configures all systems
 # for consumption of SAP software
 
-- name: Prepare for SAP Install
+- name: Ensure Servers are booted and reachable
   hosts: gcp_awx_group_hana, gcp_awx_group_s4
-  become: true
-  pre_tasks:
+  gather_facts: false
+  become: false
+  tasks:
   - name: Wait for SSH to come up
     wait_for:
       host: "{{ ansible_ssh_host }}"
@@ -13,7 +14,10 @@
       delay: 10
       timeout: 120
     delegate_to: localhost
-    become: false
+
+- name: Prepare for SAP Install
+  hosts: gcp_awx_group_hana, gcp_awx_group_s4
+  become: true
   roles:
                - redhat_sap.sap_rhsm
                # linux-system-roles.timesync google timeserver is already configured
