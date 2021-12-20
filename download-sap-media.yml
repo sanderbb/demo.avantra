@@ -1,5 +1,6 @@
 ---
-- hosts: gcp_awx_group_management
+- name: Download SAP Software
+  hosts: gcp_awx_group_management
   become: true
 
   vars:
@@ -8,7 +9,7 @@
           - sapcar
 
   tasks:
-  - name: Create GCE VMs
+  - name: Downlaod SAP content
     include_role:
       name: sap.download
     vars:

@@ -18,6 +18,15 @@
              - /export/sap-software: '10.0.0.0/8(ro)'
              - /export/hana/shared: '10.0.0.0/8(rw)'
 
+  pre_tasks:
+  - name: Wait for SSH to come up
+    wait_for:
+      host: "{{ ansible_ssh_host }}"
+      port: 22
+      delay: 10
+      timeout: 120
+    delegate_to: localhost
+
   roles:
                - mk-ansible-roles.subscribe_rhn
                # linux-system-roles.storage

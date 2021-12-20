@@ -1,9 +1,34 @@
 ---
 
 - name: Install Hana
-  hosts: hana
+  hosts: gcp_awx_group_hana
   become: true
+
+  var:
+    sapdir: /sap-software
+    nfssrv: rha-avantra-server
+
+  pre_tasks:
+    - name: ensure sap-software directory exists
+      file:
+        path: "{{ sapdir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Setup nfs mount point for ext1
+      mount:
+          src: "{{ rha-avantra-server }}:/export{{ sapdir }}"
+          path: "{{ sapdir }}"
+          fstype: nfs
+          state: mounted
 
   roles:
           - sap.linux.hana_preconfigure
-    # redhat_sap.sap_hana_deployment
+          - redhat_sap.sap_hana_deployment
+
+  always:
+    - name: ensure fileserver is unmounted
+      mount:
+          path: "{{ sapdir }}"
+          fstype: nfs
+          state: absent

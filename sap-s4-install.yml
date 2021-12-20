@@ -1,7 +1,7 @@
 ---
 
 - name: Install S4
-  hosts: s4hana
+  hosts: gcp_awx_group_s4
   become: true
 
   roles:
