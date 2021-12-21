@@ -7,7 +7,7 @@
    sap_software:
           - hana
           - sapcar
-   sap_download_dir: "/export/sap-software/"
+   sap_download_dir: "/export/sap-software"
 
   tasks:
   - name: Download SAP content
@@ -32,5 +32,5 @@
   - name: Unpack HANA on NFS-Server
     unarchive:
       src: "{{ sap_download_dir }}/51055101.ZIP"
-      dest: "{{ sap_download_dir }}"
+      dest: "{{ sap_download_dir }}/hana"
       remote_src: true
