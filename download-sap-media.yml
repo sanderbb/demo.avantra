@@ -7,15 +7,30 @@
    sap_software:
           - hana
           - sapcar
+   sap_download_dir: "/export/sap-software/"
 
   tasks:
-  - name: Downlaod SAP content
+  - name: Download SAP content
     include_role:
       name: sap.download
     vars:
           sap_sapsupport_download_application: "{{ sap_download_item }}"
           sap_sapsupport_download_version: "latest"
-          sap_sapsupport_download_destination: "/export/sap-software/"
+          sap_sapsupport_download_destination: "{{ sap_download_dir }}"
     loop: "{{ sap_software  }}"
     loop_control:
            loop_var: sap_download_item
+
+  - name: Ensure packages for unpacking are installed
+    dnf:
+      name:
+         - unzip
+         - tar
+      state: latest
+
+  # WARNING: Hardcoded stuff
+  - name: Unpack HANA on NFS-Server
+    unarchive:
+      src: "{{ sap_download_dir }}/51055101.ZIP"
+      dest: "{{ sap_download_dir }}"
+      remote_src: true
