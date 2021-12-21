@@ -1,0 +1,14 @@
+---
+
+- name: Ensure Servers are booted and reachable
+  hosts: gcp_awx_group_management
+  gather_facts: false
+  become: false
+  tasks:
+  - name: Wait for SSH to come up
+    wait_for:
+      host: "{{ ansible_ssh_host }}"
+      port: 22
+      delay: 10
+      timeout: 120
+    delegate_to: localhost
