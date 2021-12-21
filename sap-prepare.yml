@@ -1,20 +1,6 @@
 ---
 # This playbook configures all systems
 # for consumption of SAP software
-
-- name: Ensure Servers are booted and reachable
-  hosts: gcp_awx_group_hana, gcp_awx_group_s4
-  gather_facts: false
-  become: false
-  tasks:
-  - name: Wait for SSH to come up
-    wait_for:
-      host: "{{ ansible_ssh_host }}"
-      port: 22
-      delay: 10
-      timeout: 120
-    delegate_to: localhost
-
 - name: Prepare for SAP Install
   hosts: gcp_awx_group_hana, gcp_awx_group_s4
   become: true
