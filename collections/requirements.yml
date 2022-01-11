@@ -4,5 +4,5 @@ collections:
           version: 3.1.4
           source: https://galaxy.ansible.com
         # requires ansible 2.9+
-        - name: git@github.com:infrasap/community.sap_launchpad.git
-          type: git
+        # - name: git@github.com:infrasap/community.sap_launchpad.git
+        #   type: git
