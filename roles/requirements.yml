@@ -1,8 +1,6 @@
 - src: mk-ansible-roles.check_reboot
 - src: mk-ansible-roles.subscribe_rhn
 - src: mk-ansible-roles.setup_nfs_server
-- src: linux-system-roles.storage
-- src: linux-system-roles.timesync
 - src: redhat_sap.sap_rhsm
 - src: redhat_sap.sap_hostagent
 - src: redhat_sap.sap_hana_deployment
