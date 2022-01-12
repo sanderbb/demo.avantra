@@ -10,5 +10,5 @@
       host: "{{ ansible_ssh_host }}"
       port: 22
       delay: 10
-      timeout: 120
+      timeout: 3600
     delegate_to: localhost
