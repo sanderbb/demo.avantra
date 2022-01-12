@@ -37,3 +37,17 @@
       softwarecenter_search_query: "{{ item }}"
       dest: "{{ destination_dir }}"
     loop: "{{ softwarecenter_search_query }}"
+
+  - name: Ensure packages for unpacking are installed
+    dnf:
+      name:
+         - unzip
+         - tar
+      state: latest
+
+  # WARNING: Hardcoded stuff
+  - name: Unpack HANA on NFS-Server
+    unarchive:
+      src: "{{ sap_download_dir }}/51055267.ZIP"
+      dest: "{{ sap_download_dir }}/hana"
+      remote_src: true
