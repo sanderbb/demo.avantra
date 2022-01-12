@@ -6,6 +6,6 @@ collections:
         - name: google.cloud
           version: 1.0.2
         - name: community.general
-        # requires ansible 2.9+
-        # - name: git@github.com:infrasap/community.sap_launchpad.git
-        #   type: git
+          # requires ansible 2.9+
+        - name: https://github.com/infrasap/community.sap_launchpad.git
+          type: git
