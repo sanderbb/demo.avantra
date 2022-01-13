@@ -5,8 +5,10 @@ collections:
           source: https://galaxy.ansible.com
         - name: google.cloud
           version: 1.0.2
-        - name: redhat.rhel_system_roles
+        - name: fedora.linux_system_roles
+          version: 1.13.0
         - name: community.general
+          version: 4.3.0
           # requires ansible 2.9+
         - name: https://github.com/infrasap/community.sap_launchpad.git
           type: git
