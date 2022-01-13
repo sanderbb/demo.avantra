@@ -6,6 +6,6 @@
   become: true
   roles:
                - redhat_sap.sap_rhsm
-               - rhel-system-roles.storage
+               - linux-system-roles.storage
                - community.sap_install.sap_general_preconfigure
                # redhat_sap.sap_hostagent
