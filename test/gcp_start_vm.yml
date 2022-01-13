@@ -1,8 +1,9 @@
 ---
-- hosts: localhost
+- name: Start Google VM
+  hosts: localhost
   gather_facts: false
 
-  var:
+  vars:
    - gcp_vm_name: rha-hana
 
   tasks:
