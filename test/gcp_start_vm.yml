@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  var:
+   - gcp_vm_name: rha-hana
+
+  tasks:
+    - name: Start a GCP VM instance which is currently stopped
+      gcp_compute_instance:
+        name: "{{ gcp_vm_name }}"
+        zone: "{{ gcp_vm_zone }}"
+        auth_kind: serviceaccount
+        status: RUNNING
+      delegate_to: localhost
