@@ -1,8 +1,8 @@
 ---
 # tasks file for gcp_vm_create_tower
-- name: ensure disk for vm {{ gcp_vm_name }}  is created
+- name: ensure bootdisk for vm {{ gcp_vm_name }}  is created
   gcp_compute_disk:
-    name: "{{ gcp_vm_name }}-disk"
+    name: "{{ gcp_vm_name }}-bootdisk"
     size_gb: "{{ gcp_vm_disksize }}"
     source_image: "{{ gcp_vm_image_source }}"
     zone: "{{ gcp_vm_zone }}"
@@ -11,6 +11,15 @@
 #    service_account_file: "{{ credentials_file }}"
     state: present
   register: gcp_disk_config
+
+- name: ensure swapdisk for vm {{ gcp_vm_name }}  is created
+  gcp_compute_disk:
+    name: "{{ gcp_vm_name }}-swap"
+    size_gb: "{{ gcp_vm_swapsize | default('1') }}"
+    zone: "{{ gcp_vm_zone }}"
+    auth_kind: serviceaccount
+    state: present
+  register: gcp_swap_config
 
 - name: Get network configuration of {{ gcp_vm_vpc }}
   gcp_compute_network_info:
@@ -38,6 +47,9 @@
     - auto_delete: 'true'
       boot: 'true'
       source: "{{ gcp_disk_config }}"
+    - auto_delete: 'true'
+      boot: 'true'
+      source: "{{ gcp_swap_config }}"
     network_interfaces:
     - network: "{{ gcp_network_config.resources | first  }}"
       subnetwork: "{{ gcp_subnetwork_config.resources | first }}"

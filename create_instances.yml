@@ -6,6 +6,7 @@
   #   gcp_machines:
   #           - name: rha-hana
   #             disksize: 50
+  #             swapsize: 2
   #             vmtype: n1-standard-2
   #             group: hana
   #           - name: rha-nw
@@ -19,6 +20,7 @@
       msg:
         - "Name: {{ item.name }}"
         - "Size: {{ item.disksize }}"
+        - "Swap: {{ item.swapsize | default(omit) }}"
         - "type: {{ item.vmtype }}"
         - "group:{{ item.group }}"
     loop: "{{ gcp_machines }}"
@@ -29,6 +31,7 @@
     vars:
       gcp_vm_name: "{{ item.name }}"
       gcp_vm_disksize: "{{ item.disksize }}"
+      gcp_vm_swapsize: "{{ item.swapsize | default(omit) }}"
       gcp_vm_type: "{{ item.vmtype }}"
       gcp_vm_awx_group: "{{ item.group }}"
     loop: "{{ gcp_machines }}"
