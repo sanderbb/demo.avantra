@@ -12,7 +12,7 @@ collections:
           # requires ansible 2.9+
         - name: https://github.com/infrasap/community.sap_launchpad.git
           type: git
-        - name: https://github.com/infrasap/community.sap_install.git
+        - name: https://github.com/infrasap/community.sap_install.git,branch-01
           type: git
         - name: https://github.com/infrasap/community.sap_operations.git
           type: git
