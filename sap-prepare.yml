@@ -1,11 +1,23 @@
 ---
 # This playbook configures all systems
 # for consumption of SAP software
-- name: Prepare for SAP Install
+- name: Prepare for generic SAP Install
   hosts: gcp_awx_group_hana, gcp_awx_group_s4
   become: true
   roles:
                - redhat_sap.sap_rhsm
                - fedora.linux_system_roles.storage
                - community.sap_install.sap_general_preconfigure
-               # redhat_sap.sap_hostagent
+
+- name: Prepare for generic SAP HANA Install
+  hosts: gcp_awx_group_hana
+  become: true
+  roles:
+               - community.sap_install.sap_hana_preconfigure
+
+
+- name: Prepare for generic SAP Netweaver Install
+  hosts: gcp_awx_group_s4
+  become: true
+  roles:
+               - community.sap_install.sap_netweaver_preconfigure

@@ -4,8 +4,8 @@
   hosts: gcp_awx_group_hana
   become: true
   vars:
-    sapdir: /sap-software
-    nfssrv: 'rha-avantra-server'
+    sapdir: "{{ sap_hana_install_directory| defaul('/sap-software') }}"
+    nfssrv: 'my-nfs-server'
 
   pre_tasks:
     - name: ensure sap-software directory exists
