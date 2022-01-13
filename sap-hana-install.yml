@@ -22,8 +22,8 @@
           state: mounted
 
   roles:
-          - sap.linux.hana_preconfigure
-          - redhat_sap.sap_hana_deployment
+          - community.sap_install.sap_hana_preconfigure
+          - community.sap_install.sap_hana_install
 
   post_tasks:
     - name: ensure fileserver is unmounted

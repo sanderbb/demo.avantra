@@ -11,7 +11,7 @@
     suser_id: "{{lookup('env', 'SAP_SUPPORT_DOWNLOAD_USERNAME')}}"
     suser_password: "{{lookup('env', 'SAP_SUPPORT_DOWNLOAD_PASSWORD')}}"
     softwarecenter_search_query:
-      - 'SAPCAR_1010-70006178.EXE'                 #  Sapcar 7.22 Linux x86_64
+      - 'SAPCAR_1010-70006233.EXE'                 #  Sapcar 7.22 Linux x86_64
       - '51055267'                                 #  HANA 2.0 SPS05 install bundle
       - 'IMDB_SERVER20_059_0-80002031.SAR'         #  HANA 2.0 SPS05
       - 'IMDB_SERVER20_060_0-80002031.SAR'         #  HANA 2.0 SPS06
