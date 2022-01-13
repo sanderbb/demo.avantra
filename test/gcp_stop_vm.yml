@@ -1,5 +1,5 @@
 ---
-- name: Start Google VM
+- name: STOP Google VM
   hosts: localhost
   gather_facts: false
 
@@ -7,7 +7,7 @@
    - gcp_vm_name: rha-hana
 
   tasks:
-    - name: Start a GCP VM instance which is currently stopped
+    - name: terminates a GCP VM instance
       gcp_compute_instance:
         name: "{{ gcp_vm_name }}"
         zone: "{{ gcp_vm_zone }}"
