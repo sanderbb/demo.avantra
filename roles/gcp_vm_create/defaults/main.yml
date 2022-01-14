@@ -12,8 +12,10 @@ gcp_vm_zone: us-central1-a
 gcp_vm_name:
 # Image to use for the deployment
 gcp_vm_image_source: projects/centos-cloud/global/images/family/centos-8
-# Define Image diskspace in GiB
-gcp_vm_disksize: 50
+# Define Image diskspace in GiB for bootdisk
+gcp_vm_bdisksize: 50
+# Define the size of the second disk
+gcp_vm_disk2size: 100
 # Define the network name to use (leave empty for default)
 gcp_vm_vpc:
 # Define network tags (firewall rule) to use

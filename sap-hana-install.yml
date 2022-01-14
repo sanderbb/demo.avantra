@@ -39,5 +39,5 @@
 
 
   roles:
-          - community.sap_install.sap_hana_preconfigure
+          # community.sap_install.sap_hana_preconfigure
           - community.sap_install.sap_hana_install
