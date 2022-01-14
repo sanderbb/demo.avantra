@@ -5,5 +5,4 @@
   become: true
 
   roles:
-    - sap.linux.netweaver_preconfigure
-    # redhat_sap.sap_s4hana_deployment
+          - community.sap_install.sap_swpm
