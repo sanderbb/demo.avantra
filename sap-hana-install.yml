@@ -7,10 +7,10 @@
     suser_id: "{{lookup('env', 'SAP_SUPPORT_DOWNLOAD_USERNAME')}}"
     suser_password: "{{lookup('env', 'SAP_SUPPORT_DOWNLOAD_PASSWORD')}}"
 
-  pre_tasks:
+  tasks:
     - name: ensure sap-software directory exists
       file:
-        path: "{{ sap_hana_install_directory }}"
+        path: "{{ sap_hana_install_software_directory }}"
         state: directory
         mode: '0755'
 
@@ -28,16 +28,14 @@
               - requests
         state: present
 
-
     - name: Execute Ansible Module to download SAP software
       community.sap_launchpad.software_center_download:
         suser_id: "{{ suser_id }}"
         suser_password: "{{ suser_password }}"
         softwarecenter_search_query: "{{ item }}"
-        dest: "{{ sap_hana_install_directory }}"
+        dest: "{{ sap_hana_install_software_directory }}"
       loop: "{{ sap_hana_software }}"
 
-
-  roles:
-          # community.sap_install.sap_hana_preconfigure
-          - community.sap_install.sap_hana_install
+    - name: execute the SAP Hana Installation
+      include_role:
+        name: community.sap_install.sap_hana_install
