@@ -7,7 +7,7 @@
   roles:
                - redhat_sap.sap_rhsm
                - name: fedora.linux_system_roles.storage
-                 storage_pools: "{{ gcp_machines | selectattr('name', 'equalto', inventory_hostname) | sum(attribute='storage_pools', start=[]) | first }}"
+                 storage_pools: "{{ gcp_machines | selectattr('name', 'equalto', inventory_hostname) | sum(attribute='storage_pools', start=[]) }}"
                - community.sap_install.sap_general_preconfigure
 
 - name: Prepare for generic SAP HANA Install
