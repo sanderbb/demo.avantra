@@ -16,6 +16,7 @@
     redhat_subscription:
       state: absent
     become: true
+    ignore_errors: true
 
   - name: instance deleted
     gcp_compute_instance:
