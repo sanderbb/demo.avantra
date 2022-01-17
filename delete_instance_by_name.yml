@@ -12,6 +12,12 @@
   #           - name: rha-nw
   #
   tasks:
+  - name: Unregister from RHN
+    redhat_subscription:
+      state: absent
+    become: true
+    ignore_erros: true
+
   - name: instance deleted
     gcp_compute_instance:
       name: "{{ name }}"
