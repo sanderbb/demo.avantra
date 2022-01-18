@@ -62,6 +62,15 @@
       tags:
         - sap_s4_softwaredownload
 
+    - name: downlaod sapcar
+      community.sap_launchpad.software_center_download:
+        suser_id: "{{ suser_id }}"
+        suser_password: "{{ suser_password }}"
+        softwarecenter_search_query: SAPCAR_1010-70006178.EXE
+        dest: "{{ sap_swpm_software_path }}"
+      tags:
+        - sap_s4_softwaredownload
+
     - name: execute the SWPM Installation
       include_role:
         name: community.sap_install.sap_swpm
