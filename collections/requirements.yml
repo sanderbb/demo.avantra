@@ -12,9 +12,9 @@ collections:
         - name: community.general
           version: 4.3.0
           # requires ansible 2.9+
-        - name: https://github.com/infrasap/community.sap_launchpad.git
+        - name: https://github.com/sap-linuxlab/community.sap_launchpad.git
           type: git
-        - name: https://github.com/infrasap/community.sap_install.git,branch-01
+        - name: https://github.com/sap-linuxlab/community.sap_install.git
           type: git
-        - name: https://github.com/infrasap/community.sap_operations.git
+        - name: https://github.com/sap-linuxlab/community.sap_operations.git
           type: git

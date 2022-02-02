@@ -62,7 +62,7 @@
       tags:
         - sap_s4_softwaredownload
 
-    - name: downlaod sapcar
+    - name: download sapcar
       community.sap_launchpad.software_center_download:
         suser_id: "{{ suser_id }}"
         suser_password: "{{ suser_password }}"
