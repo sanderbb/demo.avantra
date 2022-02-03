@@ -12,3 +12,20 @@
       delay: 10
       timeout: 360
     delegate_to: localhost
+
+  - name: ensure network configuration is persistent
+    include_role:
+         name: rhel-system-roles.network
+    vars:
+         network_provider: nm
+         network_connections:
+           - name: "{{ ansible_default_ipv4.alias }}"
+             mac: "{{ ansible_default_ipv4.macaddress }}"
+             interface_name: "{{ ansible_default_ipv4.interface }}"
+             # state: up
+             # persistent_state: present
+             type: ethernet
+             # autoconnect: true
+             ip:
+                     dhcp4: true
+                     dhcp4_send_hostname: true
