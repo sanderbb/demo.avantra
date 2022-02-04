@@ -1,2 +1,20 @@
 ---
-# defaults file for avantra_server_install
+# defaults file for server
+avantra_server_user: xandria
+avantra_server_install_base_dir: /syslink
+avantra_server_package_dir: /software-avantra
+
+# version needs to match with the downloaded binary
+avantra_server_version: 21.11.3
+
+# default ports
+avantra_server_port_http: 8080
+avantra_server_ui_port_https: 8088
+avantra_server_ui_redirect_http: true
+
+# DB config
+avantra_server_db_username: xandria
+avantra_server_db_password: mysecretpassword
+avantra_server_db_host: 127.0.0.1
+avantra_server_db_port: 5432
+avantra_server_db_name: xandria

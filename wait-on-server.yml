@@ -15,7 +15,7 @@
 
   - name: ensure network configuration is persistent
     include_role:
-         name: rhel-system-roles.network
+         name: redhat.rhel-system-roles.network
     vars:
          network_provider: nm
          network_connections:
