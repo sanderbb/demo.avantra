@@ -13,9 +13,10 @@
       timeout: 360
     delegate_to: localhost
 
+
   - name: ensure network configuration is persistent
     include_role:
-         name: redhat.rhel-system-roles.network
+        name: redhat.rhel_system_roles.network
     vars:
          network_provider: nm
          network_connections:
