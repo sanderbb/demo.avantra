@@ -22,7 +22,9 @@
         - download_software
 
     - name: download avantra server software from storage bucket {{ gcp_bucket_avantra }}
-      command: "gsutil cp gs://{{ gcp_bucket_avantra }}/{{ avantra_version }}/server-{{ avantra_version }}*/avantra-server-*linux.bin  {{ avantra_server_install_base_dir }}"
+      command:
+        cmd: "gsutil cp gs://{{ gcp_bucket_avantra }}/{{ avantra_version }}/server-{{ avantra_version }}*/avantra-server-*linux.bin  {{ avantra_server_install_base_dir }}"
+        creates: "{{ avantra_server_install_base_dir }}/avantra-server-*linux.bin"
       tags:
         - download_software
 

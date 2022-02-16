@@ -131,7 +131,7 @@
 
 - name: debug shell output
   debug:
-     vars: register_avantra_installer_binary
+     var: register_avantra_installer_binary
 
 - name: ensure installer is executable
   file:
