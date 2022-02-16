@@ -1,2 +1,34 @@
 ---
 # tasks file for avantra_client_install
+
+- name: find newest installer
+  shell: |
+     set -o pipefail
+     export LANG=C
+     ls -1 avantra-server-*-linux.bin | sort -rV | head -1
+  args:
+    chdir: "{{ avantra_client_install_base_dir }}"
+  changed_when: false
+  register: __avantra_client_installer_binary
+
+- name: print Installer version
+  debug:
+    msg: "Found installer version: {{ __avantra_client_installer_binary.stdout-split('-').2 }}"
+
+- name: ensure installer is executable
+  file:
+    path: "{{ avantra_client_install_base_dir }}/{{ __avantra_client_installer_binary.stdout }}"
+    state: file
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: run installer
+  command:
+    cmd: >
+       "./{{ __avantra_client_installer_binary.stdout }} --"
+       "--masterhost={{ avantra_client_install_masterhost }}"
+       "--custid={{ avantra_client_install_custid }}"
+       "{{ avantra_client_install_extra_parameter }} --silent"
+    chdir: "{{ avantra_client_install_base_dir }}"
+    # creates: ....

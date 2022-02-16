@@ -1,2 +1,15 @@
 ---
 # defaults file for avantra_client_install
+
+# Installation path of Avantra Client Softwae
+avantra_client_install_base_dir: /opt/avantra
+
+# Masterhost
+avantra_client_install_masterhost:
+
+# Default Customer ID
+avantra_client_install_custid: 1
+
+# Extra Commandline Parameter
+# avantra_client_install_extra_parameter: --systemd
+avantra_client_install_extra_parameter:
