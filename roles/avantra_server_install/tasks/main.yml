@@ -1,7 +1,6 @@
 ---
 # https://docs.avantra.com/product-guide/20.11/avantra/installing-avantra-server.html#installing-on-unix-like-operating-systems
 
-
 ### Prepare host machine
 - name: Ensure required packages are installed
   yum:
@@ -118,13 +117,13 @@
   become_user: postgres
   notify: restart postgres
 
-### Urgent TODO: restart immediately
+##  TODO: really restart at the end? and only when changed to MD5?
 
 - name: find Installer
   shell: |
      set -o pipefail
      export LANG=C
-     ls -1 avantra-server-*-linux.bin | sort -n | head -1
+     ls -1 avantra-server-*-linux.bin | sort -rV | head -1
   args:
     chdir: "{{ avantra_server_install_base_dir }}"
   changed_when: false
@@ -133,6 +132,18 @@
 - name: debug shell output
   debug:
      vars: register_avantra_installer_binary
+
+- name: ensure installer is executable
+  file:
+    path: "{{ avantra_server_install_base_dir }}/{{ register_avantra_installer_binary.stdout }}"
+    state: file
+    mode: '0755'
+    owner: "{{ avantra_server_user }}"
+    group: root
+
+- name: get avantra server version
+  set_facts:
+    __avantra_server_version: "{{ register_avantra_installer_binary.stdout.split('-').2 }}"
 
 - name: Extract installer
   command:

@@ -4,9 +4,6 @@ avantra_server_user: xandria
 avantra_server_install_base_dir: /syslink
 avantra_server_package_dir: /software-avantra
 
-# version needs to match with the downloaded binary
-avantra_server_version: 21.11.3
-
 # default ports
 avantra_server_port_http: 8080
 avantra_server_ui_port_https: 8088

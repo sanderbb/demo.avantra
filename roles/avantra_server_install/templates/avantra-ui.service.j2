@@ -1,0 +1,13 @@
+[Unit]
+Description=Avantra UI service
+After=avantra-master.service
+
+[Service]
+User={{ avantra_server_user }}
+Group={{ avantra_server_user }}
+ExecStart=java -Dxandria.home={{ avantra_server_install_base_dir }} -jar {{ avantra_server_install_base_dir }}/xangui/xangui-{{ __avantra_server_version }}.jar
+TimeoutStartSec=60
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target

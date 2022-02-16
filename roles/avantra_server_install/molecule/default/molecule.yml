@@ -1,0 +1,32 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: rhel8
+    image: registry.access.redhat.com/ubi8/ubi-init
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    capabilities:
+      - SYS_ADMIN
+    command: "/usr/sbin/init"
+    pre_build_image: true
+    # TODO: how to sync those ports with vars/{{ ui_port_http/s }}?
+    exposed_ports:
+      - "8080/tcp"
+      - "8088/tcp"
+    published_ports:
+      - "0.0.0.0:8080:8080/tcp"
+      - "0.0.0.0:8088:8088/tcp"
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint .
