@@ -142,7 +142,7 @@
     group: root
 
 - name: get avantra server version
-  set_facts:
+  set_fact:
     __avantra_server_version: "{{ register_avantra_installer_binary.stdout.split('-').2 }}"
 
 - name: Extract installer
