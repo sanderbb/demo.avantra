@@ -1,6 +1,13 @@
 ---
 # tasks file for avantra_client_install
 
+- name: "Ensure Prerequisites are installed"
+  dnf:
+    name:
+      - libnsl2
+      - java-11-openjdk
+    state: present
+
 - name: find newest installer
   shell: |
      set -o pipefail
