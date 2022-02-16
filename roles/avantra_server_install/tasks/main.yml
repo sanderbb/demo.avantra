@@ -155,7 +155,7 @@
     creates: avantra-server-inst
 
 - name: Run installer
-  command: java -Djna.tmpdir=./tmp -jar ./avantra-server-inst/xandria_server_installer.jar install --version {{ server_version }} --no-start --silent
+  command: java -Djna.tmpdir=./tmp -jar ./avantra-server-inst/xandria_server_installer.jar install --version {{ __avantra_server_version }} --no-start --silent
   become: true
   become_user: "{{ avantra_server_user }}"
   args:
