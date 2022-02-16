@@ -1,0 +1,33 @@
+---
+# This playbook configures a server with
+#  - avantra server software
+
+- name: Install Avantra Server
+  hosts: rha-avantra-server
+  become: true
+  vars:
+          - avantra_version: "21.11"
+          # defaults file for server
+          - avantra_server_install_base_dir: /syslink
+
+  tasks:
+    - name: ensure download  "{{ avantra_server_install_base_dir }}" exists
+      file:
+         path: "{{ avantra_server_install_base_dir }}"
+         state: directory
+         mode: '0755'
+         owner: root
+         group: root
+      tags:
+        - download_software
+
+    - name: download avantra server software from storage bucket {{ gcp_bucket_avantra }}
+      command: "gsutil cp gs://{{ gcp_bucket_avantra }}/{{ avantra_version }}/server-{{ avantra_version }}*/avantra-server-*linux.bin  {{ avantra_server_install_base_dir }}"
+      tags:
+        - download_software
+
+    - name: Install Avantra Server
+      include_role:
+          name: avantra_server
+      tags:
+        - install_software

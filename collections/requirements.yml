@@ -13,10 +13,3 @@ collections:
           version: 4.3.0
         - name: community.postgresql
           version: 1.6.1
-          # requires ansible 2.9+
-        - name: https://github.com/sap-linuxlab/community.sap_launchpad.git
-          type: git
-        - name: https://github.com/sap-linuxlab/community.sap_install.git
-          type: git
-        - name: https://github.com/sap-linuxlab/community.sap_operations.git
-          type: git

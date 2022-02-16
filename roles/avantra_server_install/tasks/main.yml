@@ -118,7 +118,7 @@
   become_user: postgres
   notify: restart postgres
 
-### Urgent TODO: Start immediately
+### Urgent TODO: restart immediately
 
 - name: find Installer
   shell: |
