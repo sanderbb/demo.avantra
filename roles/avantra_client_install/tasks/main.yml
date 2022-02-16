@@ -26,9 +26,9 @@
 - name: run installer
   command:
     cmd: >
-       "./{{ __avantra_client_installer_binary.stdout }} --"
-       "--masterhost={{ avantra_client_install_masterhost }}"
-       "--custid={{ avantra_client_install_custid }}"
-       "{{ avantra_client_install_extra_parameter }} --silent"
+       ./{{ __avantra_client_installer_binary.stdout }} --
+       --masterhost={{ avantra_client_install_masterhost }}
+       --custid={{ avantra_client_install_custid }}
+       {{ avantra_client_install_extra_parameter }} --silent
     chdir: "{{ avantra_client_install_base_dir }}"
     # creates: ....
