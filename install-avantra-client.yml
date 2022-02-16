@@ -6,9 +6,9 @@
   hosts: gcp_awx_group_s4
   become: true
   vars:
-          - avantra_version: "21.11"
+          # avantra_version: "21.11"
           # defaults file for server
-          - avantra_client_install_base_dir: /syslink
+          - avantra_client_install_base_dir: /opt/avantra
 
   tasks:
     - name: ensure download  "{{ avantra_client_install_base_dir }}" exists
