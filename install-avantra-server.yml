@@ -28,6 +28,6 @@
 
     - name: Install Avantra Server
       include_role:
-          name: avantra_server
+          name: avantra_server_install
       tags:
         - install_software
