@@ -5,7 +5,7 @@
   shell: |
      set -o pipefail
      export LANG=C
-     ls -1 avantra-server-*-linux.bin | sort -rV | head -1
+     ls -1 agent-*.bin | sort -rV | head -1
   args:
     chdir: "{{ avantra_client_install_base_dir }}"
   changed_when: false
@@ -13,7 +13,7 @@
 
 - name: print Installer version
   debug:
-    msg: "Found installer version: {{ __avantra_client_installer_binary.stdout-split('-').2 }}"
+          msg: "Found installer version: {{ __avantra_client_installer_binary.stdout[:-4].split('-').1 }}"
 
 - name: ensure installer is executable
   file:
