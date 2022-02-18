@@ -30,6 +30,12 @@
     owner: root
     group: root
 
+- name: wait for avantra server to be up and running (fails after 5 minutes)
+  wait_for:
+    port: 9050
+    host: "{{ avantra_client_install_masterhost }}"
+    timeout: 360
+
 - name: run installer
   command:
     cmd: >
