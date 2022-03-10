@@ -1,8 +1,8 @@
 ---
-# This playbook configures a server with
-#  - avantra server software
+# This playbook configures a client to connect
+# avantra server software
 
-- name: Install Avantra Server
+- name: Install Avantra Client
   hosts: all
   become: true
   vars:
@@ -21,7 +21,7 @@
       tags:
         - download_software
 
-    - name: download avantra server software from storage bucket {{ gcp_bucket_avantra }}
+    - name: download avantra client software from storage bucket {{ gcp_bucket_avantra }}
       command:
         cmd: "gsutil cp gs://{{ gcp_bucket_avantra }}/{{ avantra_version }}/agent-{{ avantra_version }}*/agent-*.bin  {{ avantra_client_install_base_dir }}"
         creates: "{{ avantra_client_install_base_dir }}/avantra-client-*linux.bin"
