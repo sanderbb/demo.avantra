@@ -3,7 +3,7 @@
 #  - avantra server software
 
 - name: Install Avantra Server
-  hosts: gcp_awx_group_s4
+  hosts: all
   become: true
   vars:
           # avantra_version: "21.11"
