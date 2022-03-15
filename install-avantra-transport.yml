@@ -1,0 +1,100 @@
+---
+# This playbook installs avantra transports
+# on Netweaver Server
+
+- name: Install Avantra Transports on Netweaver
+  hosts: gcp_awx_group_s4
+  become: true
+
+  vars:
+          __transport_tmp: /tmp/ava_trans_dir
+          # sap_swpm_sid: S4H
+          ava_workbench_ta: AVAK900241
+          ava_custom_ta: AVAK900245
+          cofiles:
+            - K900241.AVA
+            - K900245.AVA
+          datafiles:
+            - R900241.AVA
+            - R900245.AVA
+
+
+  tasks:
+    - name: ensure download  "{{ __transport_tmp }}" exists
+      file:
+         path: "{{ __transport_tmp }}"
+         state: directory
+         mode: '0755'
+         owner: "{{ sap_swpm_sid | lower }}adm"
+         group: root
+
+
+    - name: fetch avantra transport from bucket
+      command:
+        cmd: "gsutil cp gs://{{ gcp_bucket_sap }}/Avantra/transports-for-avantra-*.zip  {{ __transport_tmp }}"
+        creates: "{{ __transport_tmp }}/transports-for-avantra-*.zip"
+
+    - name: get newest version
+      shell: |
+         set -o pipefail
+         ls -1 transports-for-avantra-*.zip | sort -uV | head -1
+      args:
+        chdir: "{{ __transport_tmp }}"
+      changed_when: false
+      register: register_avantra_transport_binary
+
+
+    - name: Unpack zip file
+      ansible.builtin.unarchive:
+         remote_src: true
+         src: "{{ __transport_tmp }}/{{ register_avantra_transport_binary.stdout }}"
+         dest: "{{ __transport_tmp }}"
+
+    - name: Copy Cofiles
+      ansible.builtin.copy:
+         remote_src: true
+         src: "{{ __transport_tmp }}/cofiles/{{ item }}"
+         dest: "/usr/sap/trans/cofiles/{{ item }}"
+         owner: "{{ sap_swpm_sid | lower }}adm"
+         group: sapsys
+         mode: '0644'
+      loop: "{{ cofiles }}"
+
+    - name: Copy datafiles
+      ansible.builtin.copy:
+         remote_src: true
+         src: "{{ __transport_tmp }}/data/{{ item }}"
+         dest: "/usr/sap/trans/data/{{ item }}"
+         owner: "{{ sap_swpm_sid | lower }}adm"
+         group: sapsys
+         mode: '0644'
+      loop: "{{ datafiles }}"
+
+    - name: Add workbench Import to Transport Queue
+      shell: |
+        # source profile
+        .  ${HOME}/.profile
+        tp addtobuffer {{ ava_workbench_ta }} {{ sap_swpm_sid | upper }} pf=/usr/sap/trans/bin/TP_DOMAIN_{{ sap_swpm_sid |upper }}.PFL
+      become_user: "{{ sap_swpm_sid | lower }}adm"
+
+
+    - name: Add custom Import to Transport Queue
+      shell: |
+        # source profile
+        .  ${HOME}/.profile
+        tp addtobuffer {{ ava_custom_ta }}  {{ sap_swpm_sid |upper }} pf=/usr/sap/trans/bin/TP_DOMAIN_{{ sap_swpm_sid |upper }}.PFL
+      become_user: "{{ sap_swpm_sid | lower }}adm"
+
+    - name: execute transports for Workbench
+      shell: |
+        # source profile
+        .  ${HOME}/.profile
+        tp import {{ ava_workbench_ta }} {{ sap_swpm_sid | upper }}  CLIENT=000 u128 pf=/usr/sap/trans/bin/TP_DOMAIN_{{ sap_swpm_sid |upper }}.PFL
+      become_user: "{{ sap_swpm_sid | lower }}adm"
+
+    - name: execute transports for custom
+      shell: |
+        # source profile
+        .  ${HOME}/.profile
+        tp import {{ ava_custom_ta }} {{ sap_swpm_sid | upper }}  CLIENT=000 u128 pf=/usr/sap/trans/bin/TP_DOMAIN_{{ sap_swpm_sid |upper }}.PFL
+      become_user: "{{ sap_swpm_sid | lower }}adm"

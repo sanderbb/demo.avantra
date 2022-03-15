@@ -1,6 +1,6 @@
 ---
-# This playbook configures a client to connect
-# avantra server software
+# This playbook configures a client to
+# connect to avantra master
 
 - name: Install Avantra Client
   hosts: all
