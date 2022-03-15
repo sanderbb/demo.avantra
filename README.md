@@ -17,7 +17,7 @@ Log into your controller as admin
 
 1. Create a custom credential type for the S-User
 
-2.
+2. usw
 
 
 ## Demo Usage
