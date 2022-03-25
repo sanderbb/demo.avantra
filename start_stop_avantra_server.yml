@@ -1,0 +1,22 @@
+- name: Start/Stop Avantra Server
+  hosts: rha-avantra
+
+  vars:
+     avantra_server_install_base_dir: /syslink
+     avantra_server_user: xandria
+     mode: start
+
+  tasks:
+        - name: "{{ mode }}: master service"
+          command: "{{ avantra_server_install_base_dir }}/master/rc.master {{ mode }}"
+          become: true
+          become_user: "{{ avantra_server_user }}"
+          args:
+            chdir: "{{ avantra_server_install_base_dir }}"
+
+        - name: "{{ mode }} UI service"
+          command: "{{ avantra_server_install_base_dir }}/xangui/rc.xangui {{ mode }}"
+          become: true
+          become_user: "{{ avantra_server_user }}"
+          args:
+            chdir: "{{ avantra_server_install_base_dir }}"

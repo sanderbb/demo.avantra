@@ -6,7 +6,7 @@
   yum:
     name:
       - libnsl2
-      - java-11-openjdk
+      - java-1.8.0-openjdk
       - sudo
       - hostname
       - python3-psycopg2

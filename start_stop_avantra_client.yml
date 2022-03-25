@@ -1,0 +1,13 @@
+- name: Start/Stop Avantra Client
+  hosts: all
+
+  vars:
+     avantra_client_install_base_dir: /opt/avantra
+     mode: start
+
+  tasks:
+        - name: "{{ mode }} client service"
+          command: "{{ avantra_client_install_base_dir }}/agent/rc.agent {{ mode }}"
+          become: true
+          args:
+            chdir: "{{ avantra_client_install_base_dir }}"

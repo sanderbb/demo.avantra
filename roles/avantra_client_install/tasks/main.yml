@@ -5,7 +5,7 @@
   dnf:
     name:
       - libnsl2
-      - java-11-openjdk
+      - java-1.8.0-openjdk
     state: present
 
 - name: find newest installer
